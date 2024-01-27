@@ -45,6 +45,7 @@
         app:lottie_rawRes="@raw/wind_animation" />
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/card_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginHorizontal="32dp"
@@ -86,16 +87,24 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/text_title" />
 
-            <com.airbnb.lottie.LottieAnimationView
-                android:id="@+id/button_next"
-                android:layout_width="160dp"
-                android:layout_height="160dp"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/view_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:lottie_loop="false"
-                app:lottie_rawRes="@raw/next_animation" />
-
+                app:layout_constraintStart_toStartOf="parent">
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/button_next"
+                    android:layout_width="160dp"
+                    android:layout_height="160dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:lottie_loop="false"
+                    app:lottie_rawRes="@raw/next_animation" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
