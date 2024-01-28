@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val lottieAnimationView: LottieAnimationView = findViewById(R.id.lottieAnimationView)
+        val lottieAnimationView: LottieAnimationView = binding.lottieAnimationView
         val lottieAnimationView2: LottieAnimationView = binding.buttonNext
 
         lottieAnimationView.playAnimation()
