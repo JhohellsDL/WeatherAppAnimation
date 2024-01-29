@@ -3,6 +3,7 @@ package com.example.weatherappanimation
 import android.animation.Animator
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -26,16 +27,15 @@ class MainActivity : AppCompatActivity() {
         val lottieAnimationView2: LottieAnimationView = binding.buttonNext
 
         lottieAnimationView.playAnimation()
-
+        binding.imageWeather.fadeInAndMoveUpAndScale()
+        binding.cardView.fadeInAndMoveUp()
+        moveThreeObjects(
+            binding.textTitle,
+            binding.textSubtitle,
+            binding.viewButton
+        )
         binding.buttonNext.setOnClickListener {
             lottieAnimationView2.playAnimation()
-            binding.imageWeather.fadeInAndMoveUpAndScale()
-            binding.cardView.fadeInAndMoveUp()
-            moveThreeObjects(
-                binding.textTitle,
-                binding.textSubtitle,
-                binding.viewButton
-            )
         }
 
         lottieAnimationView2.addAnimatorListener(object : Animator.AnimatorListener {
@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onAnimationEnd(animation: Animator) {
-
+                startActivity(Intent(this@MainActivity, MainActivity2::class.java))
             }
 
             override fun onAnimationCancel(animation: Animator) {
