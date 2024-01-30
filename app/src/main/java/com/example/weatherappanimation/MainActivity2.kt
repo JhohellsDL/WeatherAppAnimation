@@ -1,5 +1,6 @@
 package com.example.weatherappanimation
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -25,7 +26,11 @@ class MainActivity2 : AppCompatActivity() {
             Weather("Toronto", "Snowy", 4, "12")
         )
 
-        val adapter = Adapter()
+        val adapter = Adapter(
+            onClickListener = {
+                startActivity(Intent(this@MainActivity2, SunnyActivity::class.java))
+            }
+        )
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = LinearLayoutManager(applicationContext)
         adapter.submitList(weatherList)

@@ -4,7 +4,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 
-class Adapter: ListAdapter<Weather, ItemViewHolder>(ReadingComparator())  {
+class Adapter(
+    private val onClickListener: (Weather) -> Unit
+) : ListAdapter<Weather, ItemViewHolder>(ReadingComparator()) {
 
     class ReadingComparator : DiffUtil.ItemCallback<Weather>() {
         override fun areItemsTheSame(oldItem: Weather, newItem: Weather): Boolean {
@@ -23,7 +25,9 @@ class Adapter: ListAdapter<Weather, ItemViewHolder>(ReadingComparator())  {
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val currentItem = getItem(position)
-        holder.bind(currentItem)
+        holder.bind(
+            currentItem,
+            onClickListener)
     }
 
 }

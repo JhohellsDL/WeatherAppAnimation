@@ -17,7 +17,10 @@ import com.example.weatherappanimation.databinding.ItemListBinding
 class ItemViewHolder private constructor(private val binding: ItemListBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(item: Weather) {
+    fun bind(
+        item: Weather,
+        onClickListener: (Weather) -> Unit
+    ) {
         binding.textLocation.text = item.locationName
         binding.textState.text = item.stateDescription
         binding.textTemperature.text = String.format("%s°C", item.temperatureValue)
@@ -78,7 +81,11 @@ class ItemViewHolder private constructor(private val binding: ItemListBinding) :
                 binding.animateSunny.visibility = View.GONE
             }
         }
+
+        itemView.setOnClickListener { onClickListener(item) }
+
     }
+
     companion object {
         fun create(parent: ViewGroup): ItemViewHolder {
             val layoutInflater = LayoutInflater.from(parent.context)
@@ -98,6 +105,7 @@ class ItemViewHolder private constructor(private val binding: ItemListBinding) :
         animatorSet.playTogether(fadeInAnimator, translateAnimator)
         animatorSet.start()
     }
+
     private fun TextView.fadeInAndMoveUpAndChanged(value: Int) {
         alpha = 0f
         translationY = 0f
