@@ -8,5 +8,7 @@
     <color name="gray_card_item">#455D78</color>
     <color name="gray_card_divider">#5C6876</color>
     <color name="purple_card_item">#30256D</color>
-    <color name="purple_card_divider">#805CA1</color>
+    <color name="blue_card_item">#2472E2</color>
+    <color name="purple_card_divider">#A0A0A0</color>
+    <color name="yellow_card_item">#D79A32</color>
 </resources>

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/constraint_all"
     android:background="@drawable/gradient_background_cloudy"
     tools:context=".SunnyActivity">
 
@@ -35,7 +36,7 @@
         app:layout_constraintTop_toBottomOf="@id/text_location" />
 
     <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/animate_image"
+        android:id="@+id/animate_sunny"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:elevation="12dp"
@@ -44,13 +45,50 @@
         app:layout_constraintTop_toBottomOf="@id/text_date"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
+        android:visibility="gone"
+        app:lottie_rawRes="@raw/animation_sunny" />
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animate_snowy"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:elevation="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_date"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        android:visibility="gone"
+        app:lottie_rawRes="@raw/animation_snowy" />
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animate_rainy"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:elevation="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_date"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        android:visibility="gone"
+        app:lottie_rawRes="@raw/animation_rainy" />
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animate_cloudy"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:elevation="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_date"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        android:visibility="gone"
         app:lottie_rawRes="@raw/animation_cloudy" />
 
     <TextView
         android:id="@+id/text_temperature"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="224dp"
         android:fontFamily="@font/capriola"
         android:text="17°"
         android:textColor="@color/white"
@@ -58,7 +96,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/animate_image" />
+        app:layout_constraintTop_toBottomOf="@id/text_date" />
 
     <TextView
         android:id="@+id/text_state"

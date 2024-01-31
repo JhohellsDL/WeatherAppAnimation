@@ -5,11 +5,14 @@ import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
 import android.content.Intent
+import android.content.res.ColorStateList
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.weatherappanimation.databinding.ActivitySunnyBinding
 
@@ -19,6 +22,10 @@ class SunnyActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySunnyBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val intent = intent
+        val enteroRecibido = intent.getIntExtra("clave_entero", 0)
+        Log.d("asd", "asd: $enteroRecibido")
 
         val weatherList = listOf(
             Weather("NOW", "Sunny", 1, "25"),
@@ -35,7 +42,7 @@ class SunnyActivity : AppCompatActivity() {
 
         val adapter = AdapterDaily(
             onClickListener = {
-                Log.d("asd", "asd")
+                Log.d("asd", "asd: $enteroRecibido")
             }
         )
         binding.recyclerViewDaily.adapter = adapter
@@ -53,6 +60,8 @@ class SunnyActivity : AppCompatActivity() {
             binding.cardView,
             binding.cardViewRecycler
         )
+
+        definirAnimacion(enteroRecibido)
 
     }
 
@@ -161,5 +170,65 @@ class SunnyActivity : AppCompatActivity() {
         val animatorSet = AnimatorSet()
         animatorSet.playTogether(fadeInAnimator, moveUpAnimator)
         animatorSet.start()
+    }
+
+    private fun definirAnimacion(state: Int) {
+        when (state) {
+            1 -> {
+                binding.constraintAll.background = ContextCompat.getDrawable(
+                    binding.root.context,
+                    R.drawable.gradient_background_sunny
+                )
+                binding.cardView.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.yellow_card_item))
+                binding.cardViewRecycler.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.yellow_card_item))
+
+                binding.animateSunny.visibility = View.VISIBLE
+                binding.animateRainy.visibility = View.GONE
+                binding.animateSnowy.visibility = View.GONE
+                binding.animateCloudy.visibility = View.GONE
+            }
+
+            2 -> {
+                binding.constraintAll.background = ContextCompat.getDrawable(
+                    binding.root.context,
+                    R.drawable.gradient_background_cloudy
+                )
+                binding.cardView.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.purple_card_item))
+                binding.cardViewRecycler.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.purple_card_item))
+
+                binding.animateCloudy.visibility = View.VISIBLE
+                binding.animateRainy.visibility = View.GONE
+                binding.animateSnowy.visibility = View.GONE
+                binding.animateSunny.visibility = View.GONE
+            }
+
+            3 -> {
+                binding.constraintAll.background = ContextCompat.getDrawable(
+                    binding.root.context,
+                    R.drawable.gradient_background_rainy
+                )
+                binding.cardView.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.gray_card_item))
+                binding.cardViewRecycler.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.gray_card_item))
+
+                binding.animateRainy.visibility = View.VISIBLE
+                binding.animateCloudy.visibility = View.GONE
+                binding.animateSnowy.visibility = View.GONE
+                binding.animateSunny.visibility = View.GONE
+            }
+
+            4 -> {
+                binding.constraintAll.background = ContextCompat.getDrawable(
+                    binding.root.context,
+                    R.drawable.gradient_background_snowy
+                )
+                binding.cardView.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.blue_card_item))
+                binding.cardViewRecycler.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.blue_card_item))
+
+                binding.animateSnowy.visibility = View.VISIBLE
+                binding.animateRainy.visibility = View.GONE
+                binding.animateCloudy.visibility = View.GONE
+                binding.animateSunny.visibility = View.GONE
+            }
+        }
     }
 }

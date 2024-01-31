@@ -28,7 +28,9 @@ class MainActivity2 : AppCompatActivity() {
 
         val adapter = Adapter(
             onClickListener = {
-                startActivity(Intent(this@MainActivity2, SunnyActivity::class.java))
+                val intent = Intent(this@MainActivity2, SunnyActivity::class.java)
+                intent.putExtra("clave_entero", it.state)
+                startActivity(intent)
             }
         )
         binding.recyclerView.adapter = adapter
